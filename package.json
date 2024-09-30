@@ -1,0 +1,31 @@
+{
+  "name": "jobsearchclient",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.11.8",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@mdi/font": "^7.4.47",
+    "@types/lodash": "^4.17.7",
+    "@vue/apollo-composable": "^4.2.1",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "material-design-icons-iconfont": "^6.7.0",
+    "sass-embedded": "^1.78.0",
+    "vue": "^3.4.37",
+    "vuetify": "^3.7.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "lodash": "^4.17.21",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vue-tsc": "^2.0.29"
+  }
+}

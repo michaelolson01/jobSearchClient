@@ -1,0 +1,16 @@
+
+#(#S(CHECK
+     :NUMBER 100
+     :DATE "2024-9-21"
+     :AMOUNT 100.0
+     :PAYEE "Acme"
+     :MEMO "T-1000 rocket booster")
+  NIL
+  #S(CHECK
+     :NUMBER 102
+     :DATE "2024-9-21"
+     :AMOUNT 300.72
+     :PAYEE "WB Infirmary"
+     :MEMO "body cast")) 
+103 
+#<HASH-TABLE :TEST EQUAL :COUNT 2 {100276C753}> 
