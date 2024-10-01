@@ -1,5 +1,13 @@
-# Vue 3 + TypeScript + Vite
+# Job Search Client
+# (c) Michael Olson 2024
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a client I wrote to help me search for jobs by recording the relevant information for each job.
+This is all Vue.js / Vuetify / Apollo - GraphQL/ vite.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+This will connect to a GraphQL server at localhost:5100//
+
+## Build
+npm run build
+
+## Run development Environment
+npm run dev
