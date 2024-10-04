@@ -6,6 +6,7 @@ const props = defineProps<{
 	initialValue: Company,
 	availableEntries: Array<Company>,
 	jobName?: string,
+	fieldName?: string,
 	onChange: (change: Company) => void
 }>()
 
@@ -34,7 +35,7 @@ function updateSelection() {
 	<v-dialog v-model="updateSelectionDialog" persistent>
 		<v-card>
 			<v-card-title>
-				Modify Notes for {{ props.jobName ?? 'Unknown Job' }}
+				Modify {{ fieldName ?? 'Selectable' }} for {{ props.jobName ?? 'Unknown Job' }}
 			</v-card-title>
 			<v-card-text>
 				<v-select v-model="dialogSelectModel" :items="availableEntries" hide-details variant="solo"

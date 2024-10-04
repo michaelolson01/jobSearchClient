@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import _ from 'lodash'
 
 const props = defineProps<{ vModel: boolean }>()
+
+const emits = defineEmits<{
+	close: [value: boolean]
+}>()
 
 </script>
 

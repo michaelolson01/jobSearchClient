@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { ref, computed, Ref } from 'vue'
 import gql from 'graphql-tag'
 import { useQuery, useMutation } from '@vue/apollo-composable'
@@ -101,9 +102,9 @@ const COMPANIES_QUERY = gql`query CompaniesQuery {
 	}
 }`
 
-const { result: jobsResult, loading: jobsLoading, error: jobsError, refetch: jobsRefetch } = useQuery(JOBS_QUERY)
+const { result: jobsResult, /* loading: jobsLoading, error: jobsError,*/ refetch: jobsRefetch } = useQuery(JOBS_QUERY)
 
-const { result: companiesResult, loading: companiesLoading, error: companiesError, refetch: companiesRefetch } = useQuery(COMPANIES_QUERY)
+const { result: companiesResult, loading: companiesLoading, /* error: companiesError, */ refetch: companiesRefetch } = useQuery(COMPANIES_QUERY)
 
 function getCompanyName(companyId: number) {
 	if (companiesResult.value == null) return undefined
@@ -138,7 +139,7 @@ const companiesArray = computed((): Array<Company> | undefined => {
 		.value()
 })
 
-const headers = [
+const headers: readonly object[] = [
 	{ title: 'Job', align: 'start', key: 'name', style: "min-width: 2000px;" },
 	{ title: 'Company', key: 'company', align: 'start' },
 	{ title: 'Applied', key: 'applicationDate', align: 'start' },
@@ -149,7 +150,7 @@ const headers = [
 	{ title: 'Cover Letter', key: 'coverLetterName', align: 'start' },
 	{ title: 'Job Description', key: 'jobDescription', align: 'start' },
 	{ title: 'Notes', key: 'notes', align: 'start' },
-	{ title: 'Delete', key: '', align: 'start' },
+	{ title: 'Delete', key: '', align: 'start' }
 ]
 
 const addJobDialog = ref(false)
@@ -413,19 +414,23 @@ async function changeApplicationDate(input: string | number | undefined, newValu
 									<tr>
 										<td>
 											<CustomTextField :initial-value="props.item.name ?? ''"
+												field-name="job name"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
 												:on-change="(newValue) => changeJobName(props.item.id, newValue)" />
 										</td>
 										<td>
 											<CustomSelect
-												:initial-value="{name: props.item.company ?? '', id: props.item.companyId }"
-												:availableEntries="companiesArray ?? [{ name: 'Loading', id: -1}]"
-												:job-name="'Updating company for ' + props.item.name"
+												:initial-value="{ name: props.item.company ?? '', id: props.item.companyId }"
+												:availableEntries="companiesArray ?? [{ name: 'Loading', id: -1 }]"
+												:job-name="props.item.name"
+												field-name="company"
 												:on-change="(newValue) => changeJobCompany(props.item.id, newValue)" />
 										</td>
 										<td>
 											<!-- Note: if this is used in any other time zone, the CST may have to change. -->
-											<CustomDatePicker :initial-value="new Date(props.item.applicationDate.toString() + ' CST')"
+											<CustomDatePicker
+												:initial-value="new Date(props.item.applicationDate.toString() + ' CST')"
+												field-name="application date"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
 												:on-change="(newValue) => changeApplicationDate(props.item.id, newValue)" />
 										</td>
@@ -444,20 +449,23 @@ async function changeApplicationDate(input: string | number | undefined, newValu
 										<td>
 											<CustomTextField :initial-value="props.item.resumeName ?? ''"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
+												field-name="resume"
 												:on-change="(newValue) => changeResumeName(props.item.id, newValue)" />
 										</td>
 										<td>
 											<CustomTextField :initial-value="props.item.coverLetterName ?? ''"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
+												field-name="cover letter"
 												:on-change="(newValue) => changeCoverLetterName(props.item.id, newValue)" />
 										</td>
 										<td>
 											<NotesField :initial-value="props.item.jobDescription ?? ''"
+												field-name="job description"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
 												:on-change="(newValue) => changeJobDescription(props.item.id, newValue)" />
 										</td>
 										<td>
-											<NotesField :initial-value="props.item.notes ?? ''"
+											<NotesField :initial-value="props.item.notes ?? ''" field-name="notes"
 												:job-name="props.item.name + ' at ' + (props.item.company ?? 'Unknown Company')"
 												:on-change="(newValue) => changeNotes(props.item.id, newValue)" />
 										</td>
