@@ -4,6 +4,7 @@ import { ref, type Ref } from 'vue'
 const props = defineProps<{
 	initialValue: string,
 	jobName?: string,
+	fieldName?: string,
 	onChange: (change: string) => void
 }>()
 
@@ -27,12 +28,11 @@ function updateNotes() {
 <template>
 	<v-text-field density="compact" single-line variant="outlined" readonly hide-details v-model="notesFieldModel"
 		style="min-width: 300px; overflow: hidden; text-overflow: ellipsis;" @click="modifyNotes">
-		<v-tooltip :text="notesFieldModel" activator="parent" location="center" />
 	</v-text-field>
 	<v-dialog v-model="modifyNotesDialog" persistent>
 		<v-card>
 			<v-card-title>
-				Modify Notes for {{ props.jobName ?? 'Unknown Job' }}
+				Modify {{ props.fieldName ?? 'notes' }} for {{ props.jobName ?? 'Unknown Job' }}
 			</v-card-title>
 			<v-card-text>
 				<v-textarea v-model="dialogTextFieldModel" hide-details variant="outlined" rows="20" no-resize />

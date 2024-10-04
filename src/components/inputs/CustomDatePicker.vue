@@ -4,6 +4,7 @@ import { ref, type Ref } from 'vue'
 const props = defineProps<{
 	initialValue: Date,
 	jobName?: string,
+	fieldName?: string,
 	onChange: (change: Date) => void
 }>()
 
@@ -32,7 +33,7 @@ function updateDate() {
 	<v-dialog v-model="modifyDateDialog" persistent>
 		<v-card>
 			<v-card-title>
-				Modify Date for {{ props.jobName ?? 'Unknown Job' }}
+				Modify {{ props.fieldName ?? 'Date' }} for {{ props.jobName ?? 'Unknown Job' }}
 			</v-card-title>
 			<v-card-text>
 				<v-date-picker v-model="dialogDatePicker" />

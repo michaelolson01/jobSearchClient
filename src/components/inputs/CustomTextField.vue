@@ -4,6 +4,7 @@ import { ref, type Ref } from 'vue'
 const props = defineProps<{
 	initialValue: string,
 	jobName?: string,
+	fieldName?: string,
 	onChange: (change: string) => void
 }>()
 
@@ -32,7 +33,7 @@ function updateNotes() {
 	<v-dialog v-model="modifyNotesDialog" persistent>
 		<v-card>
 			<v-card-title>
-				Modify Notes for {{ props.jobName ?? 'Unknown Job' }}
+				Modify {{ props.fieldName ?? 'textfield' }} for {{ props.jobName ?? 'Unknown Job' }}
 			</v-card-title>
 			<v-card-text>
 				<v-text-field v-model="dialogTextFieldModel" hide-details variant="outlined" rows="20" no-resize />
