@@ -17,3 +17,18 @@ export type Job = {
 	jobDescription?: string,
 	company?: string
 }
+
+export type QueryJob = {
+	id?: number,
+	companyId: number,
+	name: string,
+	applicationDate: Date,
+	confirmed: boolean,
+	interviewCount: number,
+	rejected: boolean,
+	notes?: string,
+	resumeName?: string,
+	coverLetterName?: string,
+	jobDescription?: string,
+	company?: Company
+}
